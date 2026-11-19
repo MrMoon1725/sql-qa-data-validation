@@ -1,0 +1,12 @@
+services:
+  mysql-qa:
+    image: mysql:8.0
+    container_name: sql-qa-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: qa_root_password
+      MYSQL_DATABASE: ecommerce_qa
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./sql/seed_data.sql:/docker-entrypoint-initdb.d/02_seed_data.sql
